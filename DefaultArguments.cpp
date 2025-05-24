@@ -7,7 +7,7 @@
 
 
 #if 0
-// a defaul arguments is a default value provided for a function parameter e.g:
+// a default arguments is a default value provided for a function parameter e.g:
 void print(int x, int y = 10) //10 is the default argument in case an argument for y wasnt passed down if one is passed dont the value is then replaced
 {// btw for default values only = works so y = 10 is fine but y{10} or y(10) leads to a compile error
 	std::cout <<"x: " << x << '\n';
@@ -27,7 +27,7 @@ function calls to the function will be most likely broken but with the default a
 */
 
 
-//A function also can have multiple default arguments:
+//A function also can have multiple default arguments :
 
 void print(int x = 10, int y = 20, int z = 30)
 {
@@ -49,7 +49,7 @@ void print(int x, int y = 10)  // compiler error
 	std::cout << x << " " << y << '\n';
 }
 /*
-Another thing to note the defualt argument must be declared before use e.g:
+Another thing to note the default argument must be declared before use e.g:
 
 void print(int x, int y);
 
