@@ -3,7 +3,7 @@
 
 
 
-
+//34
 
 
 #if 0
@@ -58,7 +58,7 @@ int main()
   print(1);    // compile error default value couldnt be used bc its not declared yet
 }
 
-void print(int x, int y = 10) // this time its fine bc default wasnt declared twice
+void print(int x, int y = 10) // this time its fine bc default was not declared twice
 {
 	std::cout << x << " " << y << '\n';
 }
