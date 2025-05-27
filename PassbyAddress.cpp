@@ -110,7 +110,7 @@ int main()
 	As you can see the print() and printNL() functions didnt handle nullptr too well so why do we even let the user input it in the first place ?
 	Pass by const reference offers us basically the same benefits without the downside of accidentally dereferencing nullptr.
 	Pass by const reference also has some advantages which pass by const address dont have:
-	- Pass by reference can pass down rvalues , pass by address can
+	- Pass by reference can pass down rvalues , pass by address cant 
 	- The syntax for passing down values or using them is cleaner bc with pass by address you end up having to use * and & pretty often regardless what you do
 
 	Here is an example for an rvalue being passed down:
