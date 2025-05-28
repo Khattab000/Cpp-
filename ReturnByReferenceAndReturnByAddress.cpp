@@ -2,7 +2,7 @@
 #include <string>
 
 /*
-We already covered that for non fundemental types copying to the parameter is expensive that why we use pass be reference or pass by address to avoid that 
+We already covered that for non fundamental types copying to the parameter is expensive that why we use pass be reference or pass by address to avoid that 
 but what about the return ? Bc the return also copies the expensive value back (e.g std::string foo() which returns a std::string which is exepensive)
 to the caller so we need to tackle that. By default its return by value but just like with parameters we can return by reference or return by address e.g:
 
