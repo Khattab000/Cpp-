@@ -39,8 +39,8 @@ are allowed to appear in many files as long as they are the same in each one.
 The reason why we kept calling it program defined and not just user defined is bc there are actual differences:
 
 Fundamental :       A basic type built into the core of C++ e.g int ,std::nullptr_t
-Compountd:          A type defined in terms of other types e.g int* , double&, std::string, Fraction (the type we created)
-user defined:       A class type or enumerated type which include thios defined in standard library or implementation e.g: std::string, Fraction (the type we created)
+Compound:          A type defined in terms of other types e.g int* , double&, std::string, Fraction (the type we created)
+user defined:       A class type or enumerated type which include this defined in standard library or implementation e.g: std::string, Fraction (the type we created)
 program defined: 	A class type or enumerated type but excludes those defined in standard library or implementation so only our own types that we created e.g: Fraction (the type we created)
 */
 
