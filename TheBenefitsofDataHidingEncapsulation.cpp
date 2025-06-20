@@ -80,6 +80,48 @@ public:
 	//debugging is also easier with encapsulation bc you only need to keep track of the functions in the class and see how they affect the value
 };
 
+
+
+class Yogurt
+{
+	std::string m_flavor{ "vanilla" };
+
+public:
+	void setFlavor(std::string_view f)
+	{
+		m_flavor = f;
+	}
+
+	const std::string& getFlavor() const
+	{
+		return m_flavor;
+	}
+
+#if 0
+	//Worst: member function print() uses direct access to m_flavor even tho  getter exist so there is no need for print() to be a member function and more useful as a standalone function so others can use it too
+	void print() const
+	{
+		std::cout << "The yogurt has the flavor " << m_flavor << '\n';
+	}
+#endif
+#if 0
+	//Better bc now print() doesnt have direct access and uses getFlavor() but still not the best bc its a member function
+	void print(std::string_view prefix) const
+	{
+		std::cout << prefix << " " << getFlavor() << '\n';
+	}
+#endif
+};
+//The best: non member function print() is not part of the class interface and does not anc cannot access any member fuinction directly and changes to the class doesnt matter to it
+void print(const Yogurt& y) //this way we can make different applications of print to customize instead of having to use a member function 
+{
+	std::cout <<"The yogurt tastes like " << y.getFlavor() << '\n';
+}
+
+
+
+
+
 int main()
 {
 
@@ -110,7 +152,35 @@ int main()
 	-Use a member function if you have to bc in some cases C++ requires a function to be a member function
 	-Use a member function when the function needs access to private or protected members or data that should not be exposed
 	-Use a non member function otherwise especially for functions that dont modify the object 
+
+	We will show some examples with the Yogurt class
 	*/
+
+	Yogurt y{};
+	y.setFlavor("cherry");
+#if 0
+	y.print();
+#endif
+#if 0
+	y.print("The yogurt tastes like");
+#endif
+	print(y);
+
+
+	/*
+	Conclusion: Its recommended putting your public member fist and private members last if sharing your code or working with others bc the others are more interested 
+	in the interface.
+
+	As an aside here is the order by the Goodle C++ style guide:
+	-Types and type aliases 
+	-static constants
+	-factory functions
+	-Constructors and assignemnt operators 
+	-Destructor
+	-All other functions (static and non static member functions and friend functions)
+	-Data memvers (static and non static)
+	*/
+
 
 	return 0;
 }
