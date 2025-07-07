@@ -93,7 +93,7 @@ public:
 		:m_serverName{ serverName }
 	{
 	}
-	~NetworkData() // added destructo 
+	~NetworkData() // added destructor
 	{
 		sendData();   // this way the user doesnt need to call sendData() explicitly anymore 
 	}
