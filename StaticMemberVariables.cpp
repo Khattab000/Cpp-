@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <string_view>
+#include <utility> // for std::pair<T,U>
+
+
 
 //On this lesson we learn about static member variables
 
@@ -47,7 +50,7 @@ Here some rules where to define the static member variable:
 
 
 /*
-There are some exceptions or shorctus tho for example if the static variable is a constant integral type(which included char and bool) or a const enum this way the static 
+There are some exceptions or shorctuts tho for example if the static variable is a constant integral type(which included char and bool) or a const enum this way the static 
 member variable can be completelty initialized inside e.g:
 */
 class Whatever
@@ -87,7 +90,20 @@ public:
 	{
 		return m_id;
 	}
-	//giving each object unique ID can help when debugging as it can be used to  differentiate object that other have identical data especially with arrays of data
+	//giving each object unique ID can help when debugging as it can be used to  differentiate object that other have identical data especially with arrays of data which every object has instead of needing to copy it over and over again for every object
+};
+
+//static members are allowed to use auto or CTAD (type deduction) unlike non static members which  cant bc .... smth about ambiguity or non ituitive result
+class Foo
+{
+#if 0
+	auto m_x{ 5 }; // auto not allowed for non static members
+	std::pair m_v{ 1,2.3 }; // CDAT not allowed for non static members / need deduction bc std::pair<T,U>
+#endif
+
+	static inline auto s_x{ 5 }; // auto allowed for static members 
+	static inline std::pair s_v{ 1,2.3 }; // CDAT allowed for static members
+
 };
 
 
@@ -125,6 +141,8 @@ int main()
 	
 	std::cout << one.getID() << " " << two.getID() << three.getID() << '\n'; // 1 2 3
 
+
+	Foo foo{};
 
 	return 0;
 }
