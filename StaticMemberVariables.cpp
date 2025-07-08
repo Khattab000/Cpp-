@@ -131,8 +131,8 @@ int main()
 	std::cout << zweiter.s_value << '\n'; // 2
 	//both .s_value changed
 
-	staticSomething::s_value += 3;
-	std::cout << staticSomething::s_value << '\n'; // we can access the static member variable without using or ever creating an object bc its independent
+	staticSomething::s_value += 3; // for this to work it needs to be public tho
+	std::cout << staticSomething::s_value << '\n'; // we can access the static member variable without using or ever creating an object bc its independent // needs to be public tho
 
 
 	Someone one{};    // 1
