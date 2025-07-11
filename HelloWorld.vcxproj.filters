@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Chapter15Quiz.cpp">
+    <ClCompile Include="IntroductionToStdVectorAndListConstructors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

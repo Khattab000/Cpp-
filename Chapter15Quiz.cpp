@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Random.h"
 
 //QUESTION 1 : MONSTER GENERATOR
 
@@ -47,6 +48,8 @@ public:
 			return "goblin";
 		case ogre:
 			return "ogre";
+		case orc:
+			return "orc";
 		case skeleton:
 			return "skeleton";
 		case troll:
@@ -62,17 +65,74 @@ public:
 
 	void print() const
 	{
+		std::cout << m_name << " the " << getTypeString();
 		if (m_hitPoints <= 0)
 		{
-			std::cout << m_name << " the " << getTypeString() << " is dead.\n";
+			std::cout << " is dead.\n";
 		}
 		else
 		{
-			std::cout << m_name << " the  " << getTypeString() << " has " << m_hitPoints << " hit points and says " << m_roar << ".\n";
+			std::cout <<  " has " << m_hitPoints << " hit points and says " << m_roar << ".\n";
 		}
 	}
 
 };
+
+
+namespace MonsterGenerator
+{
+	std::string_view getName(int name);
+	std::string_view getRoar(int roar);
+
+	Monster generate()
+	{
+		return Monster{ static_cast<Monster::Type>(Random::get(0,(Monster::maxMonsterTypes - 1))),getName(Random::get(0,5)),getRoar(Random::get(0,5)),Random::get(1,100)};
+	}
+
+	std::string_view getName(int name)
+	{
+		switch (name)
+		{
+		case 0:
+			return "Blarg";
+		case 1:
+			return "Gustav";
+		case 2:
+			return "Dara";
+		case 3:
+			return "Abel";
+		case 4:
+			return "Stein";
+		case 5:
+			return "Dinkle";
+		default:
+			return "???";
+		}
+	}
+
+	std::string_view getRoar(int roar)
+	{
+		switch (roar)
+		{
+		case 0:
+			return "ROAR";
+		case 1:
+			return "HISSSSS";
+		case 2:
+			return "ZEHAHAHA";
+		case 3:
+			return "AI";
+		case 4:
+			return "MEOW";
+		case 5:
+			return "RATTLE";
+		default:
+			return "???";
+		}
+	}
+
+
+}
 
 int main()
 {
@@ -81,6 +141,12 @@ int main()
 
 	Monster vampire{ Monster::vampire,"James","*hiss*",0 };
 	vampire.print();
+
+	MonsterGenerator::generate().print();
+
+	Monster m{ MonsterGenerator::generate() };
+	m.print();
+
 
 	return 0;
 }
