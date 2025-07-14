@@ -4,6 +4,16 @@
 
 //On this lesson we learn about std::vector and list constructors
 
+struct Foo
+{
+#if 0
+	std::vector<int> v0( 8 ); // compiler error direct initialization () not allowed for member default initializers
+#endif
+	//when providing a default inititializer for a member class type we need to use either copy = or list{} initialization also CDAT not allowed so <> has to be used for the type
+	//but there is a way to get the desired result of lenght 8 and all elements zero initialized e.g:
+	std::vector<int>v0{ std::vector<int>(8) }; //creates a vector with length 8 and its elements zero initialized and initializes v0 with it through list initialization
+};
+
 int main()
 {
 	// vector implements an array that is containining 0 in elements / <int> is optional tho bc CTAD (Class Template Argument Deduction) could deduce the type too
@@ -62,6 +72,71 @@ int main()
 	where you need to go through the container with sequential access where elements need to be accessed in a certain order. Random access it typically the more efficient 
 	and preferred option and make arrays easy to use which is why arrays are preferred over containers.
 	*/
+
+	/*
+	But lets say we want to create a vector that can take 10 numbers how would we do that ? We could put it in placeholders but thats too much work and inefficient, instead we use
+	an explicit constructor std::vector<>(std::size_t) that takes a single std::size_t that determines the length of the vector e.g:
+	*/
+	//this constructor needs to be called with () and also you need to specify the the type so <> is also mandetory
+	std::vector<int> p1(10); //zero initialized (default constructor for class types) a vector containing 10 elements (can hold 10 int elements)
+
+	p1[0] = 2;
+	std::cout << p1[0]; 
+
+	//so you might ask yourself why we need to use () (direct initialization) to make an empty vector with a certain size here is an example:
+	std::vector<int> p2{ 10 }; //soo what does that do ? it either could be a vector with a length 1 and the element is 10 or length 10 with elements zero initialized ?
+	/*
+	In other cases this would lead to an ambiguous match and compilation error but C++ has a special rule that if a initilaizer is non empty and list initialized then the list
+	initialization {} takes precedence over std::vector<>(std::size_t) so in the above example std::vector<int> p2{ 10 }; its a a vector with a length 1 and the element is 10
+
+	so to recap:
+	std::vector<int> p1{};   // default constructor is called / creates empty vector
+	std::vector<int> p1{7};  // matching list constructor is called / length 1 with the element 7
+	std::vector<int> p1(7);  // std::vector<T>(std::size_t) constructor called / length 7 with elements zero initialized 
+	std::vector<int> p1(7,5);// similar to std::vector<T>(std::size_t) constructor called but this one takes two parameters length and what to fill the elements with instead of 
+	                            zero inititialization / length 7 with all elements initialized to 5
+
+	Lets look at some examples of initializing vectors e.g:
+	*/
+#if 0
+	std::vector<int> v1 = 10; //copy initialization wont match any constructor in this case so compilation error
+#endif 
+
+	std::vector<int> v2(10); // direct initialization so doesnt match list constructor meaning std::vector<T>(std::size_t) constructor called
+
+	std::vector<int> v3 = { 10 }; //interpreted as initializer list matches list constructor 
+	std::vector<int> v4({10 });   //interpreted as initializer list matches list constructor 
+
+	std::vector<int> v6{};         //empty initializer list matches default constructor
+	std::vector<int> v7 = {};      //empty initializer list matches default constructor
+
+	/*
+	You can assume that each container has a list constructor but if you have a class that doesnt have one and adds one later then be aware of possible changes of which 
+	constructor is called for object initialization.
+
+	Tip: Use direct initialization () when constructing smth that has a list constructor with initializers that are not element values
+	*/
+
+
+	/*
+	There are some special rules when std::vector is a member of a class type look above to the struct Foo e.g:
+	*/
+
+	const std::vector<int> prime{ 2,3,5,7,11 }; //you can also make a vector const this has to be initialized and cannot be modified and its elements are treated as if they were const
+	//std::vector<const int> prime is disallowed the elements get the const from the container
+
+	//One big disadvantage of std::vector is that it cant be made constexpr if you still want constexpr you can use std::array (we cover that in the future)
+
+
+	//Small Quiz:
+	std::vector squares { 1,4,9,16,25 };
+
+	std::vector<double> high_temp(365);
+
+	std::cout << "Enter 3 integers: ";
+	std::vector<int> calc(3);
+	std::cin >> calc[0] >> calc[1] >> calc[2];
+	std::cout << "The sum is: " << calc[0] + calc[1] + calc[2] << '\n' << "The product is: " << calc[0] * calc[1] * calc[2] << '\n';
 
 	return 0;
 }
