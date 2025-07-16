@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PassingStdVector.cpp">
+    <ClCompile Include="ReturningStdVectorAndAnIntroductionToMoveSemantics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

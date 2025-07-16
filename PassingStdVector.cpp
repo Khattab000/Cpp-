@@ -63,9 +63,16 @@ void printElement3(const std::vector<T>& arr)
 }
 
 template<typename T>
-void printElement(const std::vector<T>& arr, int index)
+void printElement(const std::vector<T>& arr, int index) //int to catch negative input
 {
-
+	if (index < 0 || index >= std::ssize(arr)) //use std::ssize() over .size() to avoid issues when comparing to signed int
+	{
+		std::cout << "Invalid index\n";
+	}
+	else
+	{
+		std::cout << "The element has value " << arr[static_cast<std::size_t>(index)] << '\n'; //static cast recommended to avoid implicit conversion and possible warnings bc [] expects a std::size_t
+	}
 }
 
 
