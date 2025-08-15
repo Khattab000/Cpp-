@@ -7,7 +7,11 @@ std::vector<int> generate()
 	return arr1;
 }
 
-
+std::vector<int> doSomething(std::vector<int> v2)
+{
+	std::vector v3{ v2[0] + v2[0] }; // Step 3 construct value
+	return v3;                       // Step 4 return value
+}
 
 int main()
 {
@@ -43,6 +47,29 @@ int main()
 	- the object is being initialized with or assigned with an rvalue
 	  object of the same type
 	- the move isnt elided
+
+	The issue is tho that not many types support move semantics, but std::vector and std::string both support it.
+	
+	So its inexepensive to return  std::vector and std::string by value bc of move semantics but we still recommend to pass
+	those types by const reference because passing an lvalue wouldnt work with move semantics bc it would lead to the 
+	lvalue being empty and leading to undefined behavior when tried to be accessed.
+	Lets look at the whole process step by step :
+	*/
+
+	std::vector v1{ 5 }; //Step 1  construct value
+	std::cout << doSomething(v1)[0] << '\n'; //Step 2 pass value
+	std::cout << v1[0];
+
+	/*
+	We cant rly optimize Step 1 and Step 3 but we can optimize Step 2 and 4 lets see how:
+	Step 2 we can pass by reference instead of passing by value bc move semantics doesnt apply hereand its expensive to pass
+	by value.
+
+	Step 4 Just return by value bc move semantics are a applied in this case ofc even better would ellision (copy being elided)
+	but that depends on the compiler and if its being smart. returning a const reference/address is not recommended bc you end 
+	up with a dangling reference or pointer.
+
+	So to summarize pass bc const reference and return by value for types that support move semantics.
 	*/
 
 	return 0;
