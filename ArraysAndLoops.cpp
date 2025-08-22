@@ -3,6 +3,7 @@
 #include <limits>
 #include<string_view>
 #include<string>
+#include<cassert>
 
 using namespace std::literals;
 /*
@@ -98,14 +99,14 @@ T findMax(const std::vector<T>& arr)
 
 void fizzbuzz(int num)
 {
-	const std::vector div{ 3,5,7,11,13,17,19 };
-	const std::vector words{ "fizz"sv,"buzz"sv,"pop"sv,"bang"sv,"jazz"sv,"pow"sv,"boom"sv};
-
+	static const std::vector div{ 3,5,7,11,13,17,19 };
+	static const std::vector words{ "fizz"sv,"buzz"sv,"pop"sv,"bang"sv,"jazz"sv,"pow"sv,"boom"sv};
+	assert(std::size(div) == std::size(words) && "fizzbuzz array sizes dont match!");
 	std::size_t length{ div.size() };
-	bool p{ false };
-	for (int i{ 1 }; i <= num; ++i) 
+
+	for (int i{ 1 }; i <= num; ++i)
 	{
-	
+		bool p{ false };
 		for (std::size_t index{ 0 }; index < length; ++index)
 		{
 			if (i % div[index] == 0)
@@ -114,12 +115,15 @@ void fizzbuzz(int num)
 				p = true;
 			}
 		}
+		if (!p)
+		{
+			std::cout << i;
+		}
+		std::cout << '\n';
 	}
-	if (!p)
-	{
-		std::cout << num;
-	}
-	std::cout << '\n';
+	
+	
+	
 }
 
 
@@ -194,10 +198,10 @@ int main()
 	std::vector<int> data3{ };
 	std::cout << findMax(data3) << '\n';
 
-	for (int i{ 0 }; i <= 21; ++i)
-	{
-		fizzbuzz(i);
-	}
+
+
+	fizzbuzz(21);
+	
 	
 
 	return 0;
