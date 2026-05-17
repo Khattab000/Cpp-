@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ArraysLoopsAndSignChallengeSolutions.cpp">
+    <ClCompile Include="ReturningStdVectorAndAnIntroductionToMoveSemantics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
