@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip> // for std::setw (which sets the width of a subsequent output)
+#include <climits> // for CHAR_BIT
 // VOID
 
 void writeValue(int x)  // void here means no return value / void is an incomplete type intetnionally bc it represents the lack of type and thus cannot be defined
@@ -29,7 +30,7 @@ For Advanced Lessons: sizeof doesnt include dynamically allocated memory used by
 int main()
 {
     int x{};
-
+    std::cout << "A byte is " << CHAR_BIT << " bits\n\n"; //CHAR_BIT = 8
     std::cout << std::left; // left justify output bsically makes the coming output left alligned and is needed if std::setw is used bc std::setw defaults to making the ouput right alligned, using std::left affects all subsequent ouputs unless you change it back   /fun fact if you want right alligned for smth else you can use std::right
     std::cout << std::setw(16) << "bool:" << sizeof(bool) << " bytes\n";    //std::setw() decides at what space the output after the output the std::setw() is used on is and you put a number in to decide what space it is but it only affects the direct output after std::setw() not the full print statement e.g used in bool: makes the output after bool appear in space 16 but the ouput after that is normal
     std::cout << std::setw(16) << "char:" << sizeof(char) << " bytes\n";    //sizeof operator gives us the byte size when given a variable or a type

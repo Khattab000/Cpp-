@@ -1,6 +1,7 @@
 #include <iostream>//Just a revision of everything we learned treat the code below as basically just a notepad
-//Last point we finished: Chapter 2 Quiz
+//Last point we finished: Chapter 3 Quiz
 
+#if 0
 void doPrint()
 {
 	std::cout << "Print\n";
@@ -30,3 +31,4 @@ int main()
 	return 0;
 
 }
+#endif

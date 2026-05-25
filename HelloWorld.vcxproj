@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DataTypes.cpp" />
     <ClCompile Include="Revision.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
