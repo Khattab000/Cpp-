@@ -39,6 +39,12 @@ bool isAllowedToTakeFunRideGoodVersion()
 
 	return height >= 140.0;      // returns true or false depending on the input with that you save yourself writing an if statement
 }
+
+bool isPrime(int x)
+{
+	return x == 2 || x == 3 || x == 5 || x == 7;
+}
+
 int main()
 {
 	std::cout << "Enter an integer: ";

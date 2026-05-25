@@ -14,6 +14,7 @@ int main()
 	std::cin >> answer2;    // if you put multiple characters in the first input, then those that werent used are in the buffer and will be used for this input and subsequent inputs depending on how many char you typed in
 	std::cout << "Your Answer is: " << answer2 << '\n'; // if you input ab in the first input it should say a in the first one and b in the second one
 
+	//std::cin >> x; does ignore leading whitespaces so if you dont want that to happen use std::cin.get(x);
 
 	char ch1{ 'a' }; // Initialized with the letter 'a' and is stored as integer 97
 	char ch2{ 97 };  // Initialized with integer 97 the code of ('a') so ch1 and ch2 are the same but ch2 is not preferred / btw if you want to store a number you can also just use '' but it can only be one digit two digits would need a string 

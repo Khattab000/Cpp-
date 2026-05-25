@@ -1,5 +1,5 @@
 #include <iostream>//Just a revision of everything we learned treat the code below as basically just a notepad
-//Last point we finished: Chapter 3 Quiz
+//Last point we finished: Chapter4Quiz
 
 #if 0
 void doPrint()

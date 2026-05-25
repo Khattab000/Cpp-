@@ -64,6 +64,13 @@ int main()
 	double nan{ zero / zero };   // not a number (mathimatically invalid)   / -nan(ind)
 	std::cout << nan << '\n';
 
+
+	double z1{ 0.0 / posinf }; // positive zero
+	std::cout << z1 << '\n';
+
+	double z2{ -0.0 / posinf }; // negative zero
+	std::cout << z2 << '\n';
+
 	//Avoid division by 0.0 all together even when your comipler supports it
 	
 	return 0;
